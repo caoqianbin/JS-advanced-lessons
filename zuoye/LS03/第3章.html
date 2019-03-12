@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	    //toFixed(n) 保留特定位置的小数
+		//超出特定位数四舍五入 返回的是字符串
+		var num1=20.367;
+		num1.toFixed(2);//20.37  第3位四舍五入
+
+		var num2=20;
+		var numobject= new Number(num2);
+		console.log(numobject._ptoto_==Number.prototype);
+		numobject.toFixed();
+
+
+		//toPrecision(数字个数)，四舍五入
+		//数字位个数小于数字的整数位是，表示成指数形式
+		//大于或等于数字整数位时，直接四舍五入截取
+		var num3=1234.567;
+		num3.toPrecision(1);//e+3  e的3次方
+		//"1e+3"
+		var num3=1234.567;
+		num3.toPrecision(2);
+		//"1.2e+3"
+		var num3=1234.567;
+		num3.toPrecision(3);
+		//"1.23e+3"
+		var num3=1234.5678;
+		num3.toPrecision(1);
+		//"1e+3"
+		var num3=1234.567;
+		num3.toPrecision(4);
+		//"1235"
+		var num3=1234.567;
+		num3.toPrecision(5);
+		//"1234.6"
+
+		"abcdef".charAt(2);//c
+
+		//fromCharCode(97,98,99);
+		//将特定的unicode转换为字符
+		String.fromCharCode(97,98,99);//abc
+
+
+		//charCodeAt(index)将特定索引位置的字符换位
+		//unicode码输出
+		var str="abcdef";
+		str.charCodeAt(0);//97
+
+		//slice(截取的起始位置，截取的结束位置)
+		//如果截取的结束位置小于0，实际结束位置为
+		//str.length+截取结束参数
+		str.slice(0,3);//abc
+		str.slice(0,-1);//abcde
+
+		//substr(截取的起始位置，截取的长度)
+		//截取长度可以缺省，表示从起始位置到字符号结束
+		str.substr(0,3);
+
+
+		//substring(截取的起始位置，截取的结束位置)
+		//如果截取的起始位置 > 截取的结束位置值，两者互换位置
+		//超出0-str.length 范围的，会被截断
+		str.substring(0,3);
+		str.substring(3,1);//相当于str.substring(1,3)  bc
+
+		var str = "abc*def*gh";
+		//split(分隔符，限定生成数组的长度)
+		str.split("*",);//["abc", "def", "gh"]
+		str.split("*",2); //["abc", "def"]
+
+
+		var str="     ab   c";
+		str.trim();//"ab   c"
+
+		var str1="abc";
+		str1.concat("def","ghi");
+</script>
+</body>
+</html>
