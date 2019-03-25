@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//对象instanceof构造函数
+	//1.判断对象是否可以使用该构造函数实例化得到
+	//2.判断在对象的原型链上能否找到构造函数的prototype属性
+	function Person(username,age)
+	{
+		this.username=username;
+		this.age=age;
+	}
+	var person= new Person("zhangsan",20);
+	console.log(person);//Person {username: "zhangsan", age: 20}
+	console.log(person._proto_ == Person.prototype);//true  
+	console.log(person._proto_._proto_ == Object.prototype)
+	person instanceof Person;
+
+	//length表示的是函数的形参个数
+	//argument是函数调用时，实参类型集合	
+	function fn1(){
+		console.log(fn1.length);
+		for(var i=0;i<argument.length;i++)
+		{
+			console.log(argument[i]);
+		}
+	}
+	fn1(1,2,3);
+
+
+	function fn1(){
+		console.log(fn1.caller);
+	}
+	function fn2(){
+		fn1();
+	}
+	fn2();
+
+	//匿名函数的递归调用
+	var func=function(){
+		if(var n<=0)
+			return 1;
+		else
+			return n*argument.callee(n-1);
+			//return n*func(n-1)
+	};
+	console.log(func(4));
+
+
+	var objA={"objName":"AAA"};
+	var objB={"objName":"BBB"};
+	objA.foo=function(){
+		console.log(this.objName);
+	}
+	objA.foo();//AAA
+	//方法.call();    call方法是改变this的指向
+	objA.foo.call(objA);//AAA   若换成B，则会报错
+
+
+	function Person(username,age){
+		this.username=username;
+		this.age=age;
+	}
+	function Student(username,age,sex)
+	{
+		Person.call(this,username,age);
+		this.sex=sex;
+	}
+
+	var student = new Student("zhangsan",20,"male");
+	console.log(student);//Student {username: "zhangsan", age: 20, sex: "male"}
+
+
+	//swim.call(对象，参数，参数)
+	function swim(m,n)
+	{
+		console.log(this.name,m,n);
+	}
+	var bird={
+		name:"polly",
+		fly:function(m,n)
+		{
+			console.log(this.name,m,n);
+		}
+	};
+	var me={
+		name:"ABC"
+	};
+	//apply
+	//swim.apply(bird,["hello","world"]);
+	swim.call(me,"hello","world");//ABC hello world
+	swim.call(bird,"hello","world");//polly hello world
+
+	//bird切换函数的this指向，但是不会立刻执行
+	//而是会生成一个新的函数
+	var swim1=swim.bird(bird,"hello","world");
+	swim1();
+
+
+	objName="obj2"''
+	var obj={
+		"objName":"obj1";
+		"show":function(){
+			function fn1(){
+				console.log(this.objName);//this不能穿透
+			}
+			fn1();
+		}
+	}
+</script>
+</body>
+</html>
