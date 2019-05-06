@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var proObj={z:3};
+	var obj=Object.create(proObj);
+	obj.x=1;
+	obj.y=2;
+	console.log(obj.x);//1
+	console.log(obj.y);//2
+	console.log(obj.z);//3
+	"z" in obj;//true
+	obj.hasOwnProrerty("z");//false
+</script>
+</body>
+</html>
