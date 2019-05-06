@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var obj={
+		x:5
+	};
+	Object.defineProperty(obj,"y",{
+		configurable:false,
+		writable:false,
+		enumerable:true,
+		value:6
+	});
+	Object.getOwnPropertyDescriptor(obj,"x");
+
+	var obj={z:1};
+	Object.defineProperties(obj,{
+		x:{
+			value:2,
+			enumerable:true,
+			configurabletrue,
+			writable:true
+		},
+		y:{},
+		z:{
+			get(){
+				return this_z;
+			},
+			set(val){
+				this_z=val;
+			}
+		}
+	})
+
+	var o1={x:1};
+	var o2=Object.create(o1);//o2._proto_==o1
+	console.log(o2.x);//1
+	//往o2自身上面添加属性x
+	o2.x=2;
+	console.log(o2.x);//2
+	//delete只能删除自身所具有的属性
+	delete o2.x;
+	o2._proto_.x=3;
+	console.log(o1.x);//3  o1和o2指向的对象相等
+	console.log(o2.x);//3
+
+	//对象的原型链尽头Object.prototype Object.prototype._proto_(null) 
+	
+</script>
+</body>
+</html>
