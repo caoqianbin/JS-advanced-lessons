@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+		var div1=document.getElementById("div1");
+        function show(el) {
+            (function(el){
+                document.onclick=function(){
+                    div1.innerHTML="hello world"
+                }
+            })(el)
+        }
+        show(div1);
+
+
+        (function(w,d){
+            
+        })(window,document)
+
+
+        (function max(x,y){
+        	return x>y?x:y;
+        }(2,3));
+
+        (function min(a,b){
+        	return a>b?a:b;
+        })(2,3);
+
+
+        var userId=2;
+        document.onclick=function(){
+        	alert(userId);
+        }
+        /*很长的代码*/
+        if(true)
+        {
+        	var userId=20;
+        }
+
+
+        //变量的非期望共享
+        function f(){
+        	var getNumFuncs=[];//函数数组
+        	for(var i=0;i<10;i++)
+        	{
+        		(function (j){
+        			getNumFuncs[j]=function(){
+        				return j;
+        			};
+        		})(i);
+        	}
+        	return getNumFuncs;
+        }
+        var tmp=f();
+        tmp[3]();//输出为3，tmp[0]()....tmp[9]()都为是期望的结果
+
+        var spanList =document.getElementByTagName('span');
+        var show =document.getElementByTagName('show');
+        for(var i=0;i<span.length;i++)
+        {
+        	(function(j){
+        		spanList[i].onclick=function(){
+        			show.innerHTML="导航"+i+"内容";
+        		}
+        	})(i);        	
+        }
+
+        /*
+        	1.函数的作用域，有定义的时候就是确定
+        	2.函数内部的变量，有些时候需要等到函数执行的来确定
+        */
+        function fn1(){
+        	var arr1=[];
+        	for(var i=0;i<10;i++)
+        	{
+        		arr[i]=function(){
+        			return i;
+        		}
+        	}
+        	return arr1;
+        }
+        var result=fn1();
+        result[0]();
+        //分解
+        arr[0]=function(){
+        	return i;
+        }
+        arr[1]=function(){
+        	return i;
+        }
+        //每次i的值都会变化，最后一次i的值是10
+
+
+        (function(w,d){
+        	var spanList=d.getElementByTagName("span");//类数组结构
+        	var show=d.getElementByClsaaName("show")[0];
+        	for(var i=0;i<spanList.length;i++)
+        	{
+        		(function(j){
+	        		spanList[i].onclick=function(){
+	        			show.innerHTML="导航"+i+"内容";
+	        		}
+	        	})(i)
+        	}
+        })(window,document)
+
+
+       	for(var i=0;i<3;i++)
+       	{
+
+       		setTimeout(function(){
+       			console.log(new Date(),i);
+       		},1000*i)
+       	}
+</script>
+</body>
+</html>
