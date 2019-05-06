@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var x=1;
+	var y=2;
+	alert(window.x);
+	//this取决于所在函数的调用主体
+	function thisTest(){
+
+	}
+
+	var point={
+		x:0;
+		y:0;
+		moveTo:function(x,y){
+			this.x=x;
+			this.y=y;
+		}
+	}
+	//函数或者方法的内部this指向，取决于该函数的调用主体
+	point.moveTo(10,10);
+
+	function point(x,y)={
+		x:0;
+		y:0;
+		this.moveTo=function(x,y){
+			this.x=x;
+			this.y=y;
+		}
+	}
+	var p=new point(10,10);
+	var objA={name:"AA",x:1};
+	var objB={name:"BB",x:2};
+	function test(){
+		console.log(this.name,this.x);
+	}
+	
+</script>
+</body>
+</html>
