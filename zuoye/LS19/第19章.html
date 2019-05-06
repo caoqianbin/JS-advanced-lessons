@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+		arr.forEach(callback,thisArg)
+		callback是针对数组的每个数组元素所应用的回调函数
+			value 表示数组元素的元素值
+			index 表示数组元素的索引值
+			arr表示被操作的数组
+		thisArg 回调函数内部的this指向
+	*/
+	var Arr=['a','b','c'];
+	var obj1={x:"d"};
+	arr1.forEach(function(value,index,arr)
+	{
+		console.log(value,index,arr);
+		this[value]=value;
+	},obj1);
+	console.log(obj1);
+
+
+	/*
+		var result=arr.every(callback)
+		测试数组的数组元素执行回调函数的结构，如果有返回值为false，则result，如果均为true则result为true
+	*/
+	var arr1=[10,20,30,40];
+	var result=arr1.every(function(value)
+	{
+		return value>20;
+	})
+	console.log(result);//false
+
+
+	var result2=arr1.map(function(value)
+	{
+		return value*2;
+	})
+	console.log(result2);//(4) [20, 40, 60, 80]
+
+	/*生成新的数组，并且数组元素猫族特定的过滤条件*/
+	var result3=arr1.filter(function(value)
+	{
+		return value>=20;
+	})
+	console.log(result3);
+
+
+	/*
+		new Date(年份，月份，时，分，秒，毫秒)
+	*/
+	var date1=new Date("2019","05","05");
+	console.log(date1);
+
+	/*
+		时间分类
+			当地时间
+			世界标准时间 UTC  GMT
+	*/
+	var millionSeconds=Date.parse("2019-05-05");
+	console.log(millionSeconds);
+
+	/*getDay取值范围0~6*/
+	var weeks=["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+	var currentDay=(new Date()).getDay();
+	console.log(weeks[currentDay]);
+	/*getMonth()取值范围0~11*/
+	(new Date()).getMonth();
+</script>
+</body>
+</html>
