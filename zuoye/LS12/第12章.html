@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//闭包:通过在函数(fn1)内部定义函数(fn2)，来访问
+	//在父函数(fn1)当中定义的局部变量(x)
+	function fn1(){
+		var x=1;
+		function fn2(){
+			console.log(++x);
+		}
+		return fn2;
+	}
+	var result=fn1();//2
+
+	/*
+		形成闭包的条件
+		外层定义的函数(addNumber),内层定义函数()
+		内层函数与外界函数作用域内相关联的变量(start)
+
+		闭包的作用:
+		1.可以访问到函数(addNumber)内部定义的局部变量(start)
+		2.可以让相关联变量(start)报纸在内存中，不释放
+	*/
+	function addNumber(start)
+	{
+		var start;
+		return function(step)
+		{
+			start+=step;
+			return start;
+		}
+	}
+	
+	function foo(){
+		var i=0;
+		function bar(){
+			console.log(++i);
+		}
+		return bar;
+	}
+	var a=foo();
+	var b=foo();
+	a();//1
+	a();//2
+	b();//1
+
+	function counter(){
+		var n=0;
+		return{
+			count:function(){
+				return ++n;
+			},
+			reset:function(){
+				n=0;
+				return n;
+			}
+		}
+	}
+	var c=counter(),d=counter();
+	console.log(c.count());
+	console.log(d.count());
+	console.log(c.reset());
+	console.log(c.count());
+	console.log(d.count());
+	
+
+	//Object.create(obj);
+	//创建一个新对象，并且将obj作为新对象的_proto_
+	var obj={
+		num:10,
+		str:"hello",
+		show:function(){
+			console.log(this.str);
+		}
+	}
+	var subObject=Object.create(obj);
+	console.log(subObject);
+
+	function Person(username,age)
+	{
+		this.username=username;
+		this.age=age;
+		this.sayHi=function(){
+			console.log(this.username);
+		}
+	}
+	var person1=new Person("zhangsan",20);
+	var person2=new Person("lisi",20);
+	person1.sayHi();
+	person2.sayHi();
+</script>
+</body>
+</html>
