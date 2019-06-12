@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        进行两侧的模式匹配，然后完成对应位置上的变量赋值
+        */
+        let [one,second,third]=['bar','foo','baz'];
+        console.log(one,second,third);
+        /*
+            ...剩余运算符
+        */
+        let [head,...tail]=[1,2,3,4];
+        console.log(head,tail);
+
+        /*
+            根据键名匹配变量，将键值赋值给对应变量
+        */
+        let {foo2,bar2}={bar2:"bar2",foo2:"foo2"};
+        console.log(foo2,bar2);
+
+        /*
+            如果均为键值对的形式，键名仅仅是用来匹配
+            键值会赋值给键值位置变量
+        */
+        let {k1:v1,k2:v2}={k1:"aaa",k2:"bbb"}
+        console.log(k1,v1);
+
+        /*
+            如果等号右侧的不是一个对象时，会转化为对象
+        */
+        let [a,b,c,d]="hello";
+        console.log(a,b,c);
+
+        let {toString:s} =123;
+        console.log(s);
+
+        let num = new Number(123);
+        let {toString:s}= num;
+        console.log(s==Number.prototype.toString);
+
+
+        /*
+            函数参数的对象解构赋值，适用于函数参数较多，结构较复杂的情况
+        */
+        function move2({x,y} = {x:0,y:0}){
+            return [x,y];
+        } 
+        console.log(move2({y:2,x:1}));//[1,2]
+        console.log(move2());//[0,0]
+        console.log(move2({}));//[undefined,undefined]
+
+        let reg1=/xyz/gi;
+        let reg2 = new RegExp(/xyz/gi);
+        let reg2 = new RegExp('xyz','gi');
+        let reg2 = new RegExp(/xyz/gi,'i');
+
+        /*
+            正则对象，flags 获取正则对象的修饰符
+        */
+        console.log(reg1,flags);
+
+        let str = "aaa_aa_a";
+        let reg5 = /a+/gi;
+
+
+        /*
+            Array.from()
+            将类数组结构的变量转化为一个数组
+        */
+        console.log(Array.from("abcdef"));
+        function fn1(){
+            var arr1 = Array.from(arguments);
+            console.log(arr1);
+        }
+        fn1(1,2,3);
+
+        /*
+            Array.of()
+            可以一组值转化为数组的结构
+        */
+        console.log(Array.of());
+
+        
+        /*
+            copyWith(target,start,end)
+            target 复制的目标位置
+            start  复制的起始位置
+            end  复制的结束位置，，不包括这一个
+        */
+        let arr1 = [0,1,2,3,4,5];
+        arr1.copyWithin(0,3,4);//复制  [3,1,2,3,4,5]
+
+        /*
+            find()
+            查找符合特定条件的元素
+            并返回第一个符合条件的元素
+        */
+        let arr2 = [10,20,30,40,50];
+        var el = arr2.find(function(element){
+            return element > 19;
+        })
+        console.log(el);
+        /*
+            findeIndex()
+            返回符合条件的第一个元素的索引值
+        */
+        let elIndex = arr2.findIndex(function(){
+            return element > 29;
+        })
+        console.log(elIndex);
+
+        /*
+            fill(value,填充的起始位置，填充的结束位置)
+        */
+        let arr3 = [1,2,3,4];
+        arr3.fill(0,0,3);
+
+        /*
+            keys()  获取到的是数组的索引0,1,2
+            values() 获取到的数组的元素值
+            可以使用for ..of 进行遍历
+        */
+
+        var username = "lily";
+        var person = {
+            username,
+            show(){
+                console.log(this.username);
+            }
+        }
+        person.show();
+
+        /*
+            如果属性名希望是个变量
+            [变量名]
+        */
+        let bar = "foo";
+        let obj = {
+            bar : "obj1"
+        }
+        console.log(obj.bar);
+        let target = {"username":"zhangsan"};
+        let source1 = {"age":20};
+        let source2 = {"sex":"male"};
+        console.log(Object.assign(target,source1,source2));
+
+        let obj1 = {"username":"zhangsan"};
+        let values = Object.values(obj1);
+        for(let i of values)
+        {
+            console.log(i);
+        }
+
+        /*
+            存在函数嵌套，this指向不正确时，解决方案
+            1.通过that转存
+            2.bind硬绑定
+            3.apply call
+            4.通过箭头函数 () = >
+        */
+        var obj = {
+            objName : "obj1",
+            showName : function(){
+                setTimeout(function(){
+                    console.log(this.objName);
+                },3000);
+            }
+        }
+        obj.showName();
+
+        /*
+            1.带有默认值的参数默认是声明的
+            在函数内部不能再重复定义
+            2.带有默认值的参数需要自二道没有默认值的参数后面
+        */
+        function fn1(x,y=2,z=3)
+        {
+            return x+y+z;
+        }
+        fn1(1);
+        fn1(1,4);
+        fn1(1,4,6);
+
+        /*
+            剩余操作
+            可以接收剩下的所有实参
+            必须放在参数的最后的位置上
+
+            剩余操作符对应变量最后得到一个数组
+        */
+        function fn1(x,...y)
+        {
+            console.log(x,y);
+        }
+        fn1(1,2,3,4,5);
+
+        /*
+            扩展操作符
+            将数组转化为以 , 分割的参数结构
+            是剩余操作符的逆操作
+        */
+        function fn2(a,b,c,d,e,f)
+        {
+            console.log(a,b,c,e,d,f);
+            console.log(arguments);
+        }
+        fn2(1,...[2,3,4,5]);
+        fn2(1,2,3,4,5);
+    </script>
+    
+</body>
+</html>
