@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var jsObject={
+		"username":"zhangsan",
+		"age":20,
+		"address":{
+			"addName":"石家庄",
+			"addCode":"111122"
+		}
+	};
+	var jsonStr1=JSON.stringify(jsObject,["username","age"]);//{"username":"zhangsan","age":20}
+	var jsonStr=JSON.stringify(jsObject,function(k,v){
+		if(typeof v == "number")
+		{
+			return v*2;
+		}
+		return v;
+	})
+	console.log(jsonStr1);
+</script>
+</html>
