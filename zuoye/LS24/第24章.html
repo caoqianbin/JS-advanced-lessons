@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<table width="400" height="400" border="1" align="center">
+	<tr class="odd">
+		<td id="td1"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="even">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="odd">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="even">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<img src="./1.jpg" id="img1">
+	
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		$("td:first").css("backgroud","red");
+		$("td:last").css("backgroud","green");
+		$("td:even").css("backgroud","blue");
+		$("td:odd").css("backgroud","purple");
+		/*
+			$("td:eq(索引值)") 选中特定索引值的元素
+			$("td:gt(索引值)") 选中索引值大于特定索引的元素
+		*/
+		$("td:eq(0)").css("backgroud","yellow");
+		var index=5;
+		$("td:eq("+ index +")").css("backgroud","yellow");
+		$("td:gt(2)").css("backgroud","pink");
+		$("td:lt(3)").css("backgroud","black");
+		$("td:not(#td1)").css("backgroud","orange");
+
+		$("#img1").mouseover(function(){
+			$(this).css("border","5px soild red");
+		})
+		$("img").mouseover(function(){
+			$(this).css("border","5px soild red");
+		})
+	</script>
+</html>

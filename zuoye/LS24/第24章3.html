@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 1000px;
+            border: 2px solid red;
+            margin: 0 auto;
+        }
+        #btnlist{
+            width: 1000px;
+            margin:0 auto;
+        }
+        img{
+            width: 150px;
+        }
+        .imgborder{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="./1.jpg" id="img1">
+    </div>
+    <div id="btnlist">
+        <button  id="after">after</button>
+    </div>
+    <button id="attrbtn"></button>
+    <button id="btn">title</button>
+    <button id="btn1">title1</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $("#after").click(function(){
+        var $img2 = $("<img src='./3.jpg'/>");
+        $("#img1").after($img2);
+    })
+    $(document).ready(function(){
+        console.log(1);
+    })
+    /*
+        val()用于获取或者设置表单元素的value值
+        html()用于获取或者设置选中元素标签内的html内容
+        css()用于设置元素的样式，参数可以是对象或者两个参数
+    */
+    $("username").blur(function(){
+        var inputVal = $(this).val();
+        if(inputVal == "")
+        {
+            $(".error").html("用户名不能为空");
+            $(".error").css({
+                "color":"red",
+                "font-size":"30px"
+            })
+        }
+    })
+
+
+    /*
+        attr("属性名"，"属性值")； 设置特定元素的属性
+        attr("属性名") : 获取特定属性的属性值
+        removeAttr("属性名") :移除特定属性 
+
+        addClass("class的名称")：表示向选中元素添加新的class
+    */
+    $("#attrbtn").click(function(){
+        $("#img1").attr("src","3.jpg");
+        alert($("#img1").attr("src"));
+    })
+
+    $("#btn").click(function(){
+        $("#img1").attr("title","这是一张图片");
+    })
+
+    $("#btn1").click(function(){
+        $("#img1").removeAttr("title");
+    })
+
+    $("#img1").mouseover(function(){
+        $(this).addClass("imgborder");
+    })
+
+    $("#img1").mouseout(function(){
+        $(this).removeClass("imgborder");
+    })
+
+
+    /*
+        总结：
+        1.引入jquery库
+        2.得到jquery包装集
+            $("#btn")
+            $("td:even") 索引值为偶数
+            $("td:odd") 索引值为奇数
+            $("td:eq(index)") 索引值为index  index 任意写
+            $("td:lt(index)) 索引值小于index
+            $("td:gt(index)) 索引值大于index
+            $("td:not(selector)) 排除特定元素的其他元素
+        3.事件
+            mouseover() mouseout() mousemove() click()  blur() focus()
+        4.Dom操作
+            $("htmll结构")
+            append()  appendTo() before() insertBefore() after() insertAfter()
+            prepend() prependTo()
+
+            html() val() attr() remove() addClass() removeClass() css()
+    */
+</script>
+</html>

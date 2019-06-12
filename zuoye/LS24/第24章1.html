@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		div{
+			background-color: grey;
+		}
+	</style>
+</head>
+<body>
+	<div>层一</div>
+	<div>层二</div>
+	<div>层三</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	/*
+		鼠标移上时，背景色变成蓝色
+		移开时，变回灰色
+		点击时变成红色
+	*/
+	$("div").mouseover(function(){
+		$(this).css("background","blue");
+	}).mouseout(function(){
+		$(this).css("background","#eee");
+	}).onclick(function(){
+		$(this).css("background","red");
+	})
+
+</script>
+</html>
